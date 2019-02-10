@@ -26,6 +26,26 @@ spec:
         resources: {}
 status: {}
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: php-host
+  name: php-host
+spec:
+  ports:
+  - name: "9000"
+    port: 9000
+    targetPort: 9000
+  selector:
+    io.kompose.service: php-host
+status:
+  loadBalancer: {}
+---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -54,6 +74,26 @@ spec:
         resources: {}
 status: {}
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: nginx-host
+  name: nginx-host
+spec:
+  ports:
+  - name: "80"
+    port: 80
+    targetPort: 80
+  selector:
+    io.kompose.service: nginx-host
+status:
+  loadBalancer: {}
+---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -79,46 +119,6 @@ spec:
         resources: {}
       restartPolicy: Always
 status: {}
----
-apiVersion: v1
-kind: Service
-metadata:
-  annotations:
-    kompose.cmd: kompose convert -f docker-compose.yml
-    kompose.version: 1.17.0 (a74acad)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: php-host
-  name: php-host
-spec:
-  ports:
-  - name: "9000"
-    port: 9000
-    targetPort: 9000
-  selector:
-    io.kompose.service: php-host
-status:
-  loadBalancer: {}
----
-apiVersion: v1
-kind: Service
-metadata:
-  annotations:
-    kompose.cmd: kompose convert -f docker-compose.yml
-    kompose.version: 1.17.0 (a74acad)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: nginx-host
-  name: nginx-host
-spec:
-  ports:
-  - name: "80"
-    port: 80
-    targetPort: 80
-  selector:
-    io.kompose.service: nginx-host
-status:
-  loadBalancer: {}
 ---
 apiVersion: v1
 kind: Service
