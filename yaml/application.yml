@@ -119,6 +119,24 @@ spec:
     io.kompose.service: nginx-host
 status:
   loadBalancer: {}
-
-
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: redis-host
+  name: redis-host
+spec:
+  ports:
+  - name: "6379"
+    port: 6379
+    targetPort: 6379
+  selector:
+    io.kompose.service: redis-host
+status:
+  loadBalancer: {}
 
