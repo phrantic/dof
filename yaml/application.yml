@@ -19,7 +19,7 @@ spec:
         io.kompose.service: php-host
     spec:
       containers:
-      - image: php
+      - image: phrantic/php:%IMAGE-PLACEHOLDER%
         name: php-host
         ports:
         - containerPort: 9000
@@ -67,7 +67,7 @@ spec:
         io.kompose.service: nginx-host
     spec:
       containers:
-      - image: nginx
+      - image: phrantic/nginx:%IMAGE-PLACEHOLDER%
         name: nginx-host
         ports:
         - containerPort: 80
