@@ -19,19 +19,11 @@ spec:
         io.kompose.service: php-host
     spec:
       containers:
-      - image: php-host
+      - image: php
         name: php-host
         ports:
         - containerPort: 9000
         resources: {}
-        volumeMounts:
-        - mountPath: /site
-          name: php-host-claim0
-      restartPolicy: Always
-      volumes:
-      - name: php-host-claim0
-        persistentVolumeClaim:
-          claimName: php-host-claim0
 status: {}
 ---
 apiVersion: extensions/v1beta1
@@ -55,19 +47,11 @@ spec:
         io.kompose.service: nginx-host
     spec:
       containers:
-      - image: nginx-host
+      - image: nginx
         name: nginx-host
         ports:
         - containerPort: 80
         resources: {}
-        volumeMounts:
-        - mountPath: /site
-          name: nginx-host-claim0
-      restartPolicy: Always
-      volumes:
-      - name: nginx-host-claim0
-        persistentVolumeClaim:
-          claimName: nginx-host-claim0
 status: {}
 ---
 apiVersion: extensions/v1beta1
